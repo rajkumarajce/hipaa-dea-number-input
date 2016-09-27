@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>hipaa-password-input test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../bower_components/iron-test-helpers/test-helpers.js"></script>
+    <script src="../bower_components/iron-test-helpers/mock-interactions.js"></script>
+
+    <link rel="import" href="../hipaa-password-input.html">
+</head>
+
+<body>
+
+    <test-fixture id="basic">
+        <template>
+            <hipaa-password-input></hipaa-password-input>
+        </template>
+    </test-fixture>
+    <test-fixture id="visible">
+        <template>
+            <hipaa-password-input visible></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="label">
+        <template>
+            <hipaa-password-input label="Password"></<hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="error">
+        <template>
+            <hipaa-password-input auto-validate pattern="^(?=.*\d)(?=.*[~!@#$%^*&;?.+_])(?=.*[a-z])(?=.*[A-Z]).{8,}$" value="Biztek@123" error-message="Password should have at least 8 characters with at least one number, one lowercase, one uppercase letter, one special char(~!@#$%^*&;?.+_)"></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="required">
+        <template>
+            <hipaa-password-input auto-validate required error-message="error"></hipaa-password-input>
+        </template>
+    </test-fixture>
+
+    <script>
+        suite('hipaa-password-input', function() {
+            var basic;
+            var visible;
+
+            setup(function() {
+                basic = fixture('basic');
+                visible = fixture('visible');
+            });
+
+            test('instantiating the element works', function() {
+                var element = fixture('basic');
+                assert.equal(element.is, 'hipaa-password-input');
+            });
+
+            test('click test togglePasswordVisibility', function() {
+                var input = fixture('error');
+                forceXIfStamp(input);
+                var error = Polymer.dom(input.root).querySelector('paper-icon-button');
+                assert.ok(error, 'paper-icon-button exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+            });
+
+            test('default properties', function() {
+                assert(!basic.visible);
+            });
+
+            test('error message is displayed', function() {
+                var input = fixture('error');
+                forceXIfStamp(input);
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+            });
+
+
+            test('empty required input shows error', function() {
+                var input = fixture('required');
+                forceXIfStamp(input);
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).display, 'none', 'error is not display:none');
+            });
+
+
+            test('defines the "pattern" property', function() {
+                assert.equal(basic.pattern, '^(?=.*[0-9])(?=.*[~!@#$%^*&;?.+_])(?=.*[a-z])(?=.*[A-Z]).{8,}$');
+            });
+
+            test('defines the "errorMessage" property', function() {
+                assert.equal(basic.errorMessage, 'Password should have at least 8 characters with at least one number, one lowercase, one uppercase letter, one special char(~!@#$%^*&;?.+_)');
+            });
+
+            test('defines the "password" property', function() {
+                assert.equal(basic.value, '');
+            });
+        });
+    </script>
+</body>
+
+</html>
