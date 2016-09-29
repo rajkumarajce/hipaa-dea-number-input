@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rajkumarajce/hipaa-dea-number-input.svg?branch=master)](https://travis-ci.org/rajkumarajce/hipaa-dea-number-input)
+
 # \<hipaa-dea-number-input\>
 
 `<hipaa-dea-number-input>` is a single-line text field to hold valid Hipaa compliant DEA number.
