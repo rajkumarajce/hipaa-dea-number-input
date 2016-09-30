@@ -1,0 +1,25 @@
+{
+  "name": "hipaa-dea-number-input",
+  "description": "project",
+  "main": "hipaa-dea-number-input.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/rajkumarajce/hipaa-dea-number-input",
+  "_release": "1118b177cf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1118b177cf19d620982237aa550b1750d19ee8ee"
+  },
+  "_source": "git://github.com/rajkumarajce/hipaa-dea-number-input.git",
+  "_target": "master",
+  "_originalSource": "rajkumarajce/hipaa-dea-number-input",
+  "_direct": true
+}
